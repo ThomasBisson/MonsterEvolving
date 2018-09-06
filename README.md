@@ -5,6 +5,8 @@ Right now I am creating the spells for every character, if you want you can test
 
 Moving around : arrow keys
 
+Dying annimation : space
+
 Simple attack : a
 
 Fire ball : f
