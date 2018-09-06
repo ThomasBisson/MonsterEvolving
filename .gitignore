@@ -34,3 +34,10 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+!MonsterEvolving.exe
+!MonsterEvolving_Data
+!mono.dll
+!MonoPosixHelper.dll
+!UnityPlayer.dll
+!*.dll
