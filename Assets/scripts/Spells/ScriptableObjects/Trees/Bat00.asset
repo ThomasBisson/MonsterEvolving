@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225a3e490928fd2408767c8cac4d2cfe, type: 3}
+  m_Name: Bat00
+  m_EditorClassIdentifier: 
+  m_name: Basic Tree
+  m_description: The bat monster basic spell tree.
+  m_spellLinks:
+  - {fileID: 11400000, guid: e98567d31f3f36d4e8b756724aab8a6f, type: 2}
+  - {fileID: 11400000, guid: fd026558672c7d64fbd685809f9b4ae1, type: 2}
+  - {fileID: 11400000, guid: 4b1210bd63b65ff48903f5a3abb59671, type: 2}
