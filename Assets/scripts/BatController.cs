@@ -13,13 +13,18 @@ public class BatController : MonoBehaviour {
     //Stats
     [Header("Stats")]
     public int m_health;
+    public int m_currentHealth;
     public int m_mana;
+    public int m_currentMana;
     public int m_FireIntel;
     public int m_EarthStrenght;
     public int m_WindAgility;
     public int m_WaterLuck;
     private int m_actualHealth;
     private int m_actualMana;
+    private int m_level;
+    private int m_xpNeeded;
+    private int m_cuurentXP;
 
 
     //State
@@ -106,7 +111,7 @@ public class BatController : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 m_animator.SetTrigger(m_attackHash);
-                GameObject spell = Instantiate(m_basicSpellTree.m_spellLinks[1].m_spell.m_prefab, m_go_spell_cast_point.transform.position, transform.rotation);
+                Instantiate(m_basicSpellTree.m_spellLinks[1].m_spell.m_prefab, m_go_spell_cast_point.transform.position, transform.rotation);
                 m_actualMana -= m_basicSpellTree.m_spellLinks[1].m_spell.m_manaConsuption;
                 //@TODO : make an observer to make the slider move
             }
