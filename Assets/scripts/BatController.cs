@@ -10,21 +10,9 @@ public class BatController : MonoBehaviour {
         DEAD
     }
 
-    //Stats
-    [Header("Stats")]
-    public int m_health;
-    public int m_currentHealth;
-    public int m_mana;
-    public int m_currentMana;
-    public int m_FireIntel;
-    public int m_EarthStrenght;
-    public int m_WindAgility;
-    public int m_WaterLuck;
-    private int m_actualHealth;
-    private int m_actualMana;
-    private int m_level;
-    private int m_xpNeeded;
-    private int m_cuurentXP;
+    //CharacterStats
+
+    private CharacterStats m_characterStats;
 
 
     //State
@@ -51,10 +39,6 @@ public class BatController : MonoBehaviour {
     public SpellTree m_basicSpellTree;
     public GameObject m_go_spell_cast_point;
 
-    //UI
-    [Header("UI")]
-    private Slider m_healthSlider;
-    private Slider m_manaSlider;
 
     // Use this for initialization
     void Start () {
@@ -62,15 +46,7 @@ public class BatController : MonoBehaviour {
         m_controller = GetComponent<CharacterController>();
         m_groundChecker = transform.GetChild(0);
 
-        m_healthSlider = GameObject.Find("HealthSlider").GetComponent<Slider>();
-        m_healthSlider.maxValue = m_health;
-        m_healthSlider.value = m_health;
-        m_actualHealth = m_health;
-
-        m_manaSlider = GameObject.Find("ManaSlider").GetComponent<Slider>();
-        m_manaSlider.maxValue = m_mana;
-        m_manaSlider.value = m_mana;
-        m_actualMana = m_mana;
+        m_characterStats = GetComponent<CharacterStats>();
 
         m_state = MonsterState.HEALTHY;
     }
@@ -97,6 +73,8 @@ public class BatController : MonoBehaviour {
             if (m_isGrounded && m_velocity.y < 0)
                 m_velocity.y = 0f;
 
+
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 m_animator.SetTrigger(m_dieHash);
@@ -112,7 +90,7 @@ public class BatController : MonoBehaviour {
             {
                 m_animator.SetTrigger(m_attackHash);
                 Instantiate(m_basicSpellTree.m_spellLinks[1].m_spell.m_prefab, m_go_spell_cast_point.transform.position, transform.rotation);
-                m_actualMana -= m_basicSpellTree.m_spellLinks[1].m_spell.m_manaConsuption;
+                m_characterStats.m_actualMana -= m_basicSpellTree.m_spellLinks[1].m_spell.m_manaConsuption;
                 //@TODO : make an observer to make the slider move
             }
 
