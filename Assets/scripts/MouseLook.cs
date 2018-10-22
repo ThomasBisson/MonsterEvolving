@@ -22,7 +22,7 @@ public class MouseLook : MonoBehaviour
 {
 
 
-    public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
+    public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2, RotateLeftClik = 3 }
     public RotationAxes axes = RotationAxes.MouseXAndY;
     public float sensitivityX = 15F;
     public float sensitivityY = 15F;
@@ -40,6 +40,7 @@ public class MouseLook : MonoBehaviour
     Quaternion originalRotation;
 
     private Rigidbody rigidbody;
+
     void Update()
     {
         if (axes == RotationAxes.MouseXAndY)
@@ -65,7 +66,7 @@ public class MouseLook : MonoBehaviour
             if (m_isPlayer)
                 m_player.localRotation = originalRotationPlayer * xQuaternion;
         }
-        else
+        else if (axes == RotationAxes.MouseY )
         {
             rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
             rotationY = ClampAngle(rotationY, minimumY, maximumY);
