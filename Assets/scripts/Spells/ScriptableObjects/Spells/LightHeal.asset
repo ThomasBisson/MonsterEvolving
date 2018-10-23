@@ -9,14 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb839ccfff64d4144af095b90517329c, type: 3}
-  m_Name: LittleWaterfall
+  m_Name: LightHeal
   m_EditorClassIdentifier: 
-  m_prefab: {fileID: 1325741151501392, guid: 0e21760bc6084464dbd861cbe3a08828, type: 2}
-  m_name: Little Waterfall
-  m_description: Invoke a little waterfall to block the ennemie.
-  m_damage: 20
-  m_heal: 0
+  m_prefab: {fileID: 1680265610186080, guid: 4ed7fed908f4a534f9dff6c23a868ceb, type: 2}
+  m_name: Light heal
+  m_description: A light heal on the caster.
+  m_damage: 0
+  m_heal: 20
   m_manaConsuption: 20
-  m_cooldown: 2
+  m_cooldown: 15
   m_levelAvailable: 0
   m_image: {fileID: 0}

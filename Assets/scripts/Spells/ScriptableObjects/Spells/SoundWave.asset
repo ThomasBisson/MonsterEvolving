@@ -16,6 +16,8 @@ MonoBehaviour:
   m_description: Create a sound wave that damage the ennemy and make him stunned for
     1 second.
   m_damage: 10
+  m_heal: 0
   m_manaConsuption: 20
+  m_cooldown: 2
   m_levelAvailable: 0
   m_image: {fileID: 0}

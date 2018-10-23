@@ -15,6 +15,8 @@ MonoBehaviour:
   m_name: FireBall
   m_description: A FireBall that goes in a staight line.
   m_damage: 50
+  m_heal: 0
   m_manaConsuption: 10
+  m_cooldown: 2
   m_levelAvailable: 0
   m_image: {fileID: 0}

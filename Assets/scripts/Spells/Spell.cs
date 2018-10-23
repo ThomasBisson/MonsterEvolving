@@ -7,7 +7,9 @@ public class Spell : ScriptableObject {
     public string m_name;
     public string m_description;
     public int m_damage;
+    public int m_heal;
     public int m_manaConsuption;
+    public int m_cooldown;
     public int m_levelAvailable;
 
     public Sprite m_image;

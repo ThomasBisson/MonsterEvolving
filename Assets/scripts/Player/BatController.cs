@@ -86,18 +86,13 @@ public class BatController : MonoBehaviour {
                 m_animator.SetTrigger(m_attackHash);
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                m_animator.SetTrigger(m_attackHash);
-                Instantiate(m_basicSpellTree.m_spellLinks[1].m_spell.m_prefab, m_go_spell_cast_point.transform.position, transform.rotation);
-                m_characterStats.m_actualMana -= m_basicSpellTree.m_spellLinks[1].m_spell.m_manaConsuption;
-                //@TODO : make an observer to make the slider move
-            }
+            
 
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 m_animator.SetTrigger(m_attackHash);
                 GameObject spell = Instantiate(m_basicSpellTree.m_spellLinks[0].m_spell.m_prefab, m_go_spell_cast_point.transform.position, transform.rotation);
+                //m_characterStats.m_actualMana -= m_basicSpellTree.m_spellLinks[0].m_spell.m_manaConsuption;
                 FireBallController fireBallController = spell.GetComponent<FireBallController>();
                 spell.GetComponent<Rigidbody>().AddForce(transform.forward * fireBallController.speed);
                 Destroy(spell, fireBallController.time_alive);
@@ -106,7 +101,22 @@ public class BatController : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 m_animator.SetTrigger(m_attackHash);
+                Instantiate(m_basicSpellTree.m_spellLinks[1].m_spell.m_prefab, m_go_spell_cast_point.transform.position, transform.rotation);
+                //m_characterStats.m_actualMana -= m_basicSpellTree.m_spellLinks[1].m_spell.m_manaConsuption;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                m_animator.SetTrigger(m_attackHash);
                 Instantiate(m_basicSpellTree.m_spellLinks[2].m_spell.m_prefab, m_go_spell_cast_point.transform.position, transform.rotation);
+                //m_characterStats.m_actualMana -= m_basicSpellTree.m_spellLinks[2].m_spell.m_manaConsuption;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                m_animator.SetTrigger(m_attackHash);
+                Instantiate(m_basicSpellTree.m_spellLinks[3].m_spell.m_prefab, m_go_spell_cast_point.transform.position, transform.rotation);
+                //m_characterStats.m_actualMana -= m_basicSpellTree.m_spellLinks[3].m_spell.m_manaConsuption;
             }
         }
     }
