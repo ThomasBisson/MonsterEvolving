@@ -472,6 +472,51 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114637416043718720, guid: 2abad55edc203724ba8421f1955ff61b,
+        type: 2}
+      propertyPath: m_KeyCode.Array.data[0]
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 114637416043718720, guid: 2abad55edc203724ba8421f1955ff61b,
+        type: 2}
+      propertyPath: m_KeyCode.Array.data[1]
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114637416043718720, guid: 2abad55edc203724ba8421f1955ff61b,
+        type: 2}
+      propertyPath: m_KeyCode.Array.data[2]
+      value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 114637416043718720, guid: 2abad55edc203724ba8421f1955ff61b,
+        type: 2}
+      propertyPath: m_KeyCode.Array.data[3]
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 114637416043718720, guid: 2abad55edc203724ba8421f1955ff61b,
+        type: 2}
+      propertyPath: m_KeyCode.Array.data[4]
+      value: 53
+      objectReference: {fileID: 0}
+    - target: {fileID: 114637416043718720, guid: 2abad55edc203724ba8421f1955ff61b,
+        type: 2}
+      propertyPath: m_KeyCode.Array.data[5]
+      value: 54
+      objectReference: {fileID: 0}
+    - target: {fileID: 114637416043718720, guid: 2abad55edc203724ba8421f1955ff61b,
+        type: 2}
+      propertyPath: m_KeyCode.Array.data[6]
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 114637416043718720, guid: 2abad55edc203724ba8421f1955ff61b,
+        type: 2}
+      propertyPath: m_KeyCode.Array.data[7]
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 114637416043718720, guid: 2abad55edc203724ba8421f1955ff61b,
+        type: 2}
+      propertyPath: m_KeyCode.Array.data[8]
+      value: 57
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2abad55edc203724ba8421f1955ff61b, type: 2}
   m_IsPrefabParent: 0

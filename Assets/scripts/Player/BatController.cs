@@ -4,19 +4,7 @@ using UnityEngine.UI;
 
 public class BatController : MonoBehaviour {
 
-    public enum MonsterState {
-        HEALTHY,
-        STUNNED,
-        DEAD
-    }
-
-    //CharacterStats
-
     private CharacterStats m_characterStats;
-
-
-    //State
-    private MonsterState m_state;
 
     //Animation
     private Animator m_animator;
@@ -39,6 +27,10 @@ public class BatController : MonoBehaviour {
     public SpellTree m_basicSpellTree;
     public GameObject m_go_spell_cast_point;
 
+    //SpellsInput
+    [Header("Spell Inputs")]
+    public KeyCode[] m_KeyCode = new KeyCode[9];
+
 
     // Use this for initialization
     void Start () {
@@ -48,13 +40,13 @@ public class BatController : MonoBehaviour {
 
         m_characterStats = GetComponent<CharacterStats>();
 
-        m_state = MonsterState.HEALTHY;
+       
     }
 
     // Update is called once per frame
     void Update() {
 
-        if(m_state == MonsterState.HEALTHY)
+        if(m_characterStats.m_state == MonsterState.HEALTHY)
         {
             if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
             {
@@ -92,7 +84,7 @@ public class BatController : MonoBehaviour {
             {
                 m_animator.SetTrigger(m_attackHash);
                 GameObject spell = Instantiate(m_basicSpellTree.m_spellLinks[0].m_spell.m_prefab, m_go_spell_cast_point.transform.position, transform.rotation);
-                //m_characterStats.m_actualMana -= m_basicSpellTree.m_spellLinks[0].m_spell.m_manaConsuption;
+                m_characterStats.UseMana(m_basicSpellTree.m_spellLinks[0].m_spell.m_manaConsuption);
                 FireBallController fireBallController = spell.GetComponent<FireBallController>();
                 spell.GetComponent<Rigidbody>().AddForce(transform.forward * fireBallController.speed);
                 Destroy(spell, fireBallController.time_alive);
@@ -102,29 +94,29 @@ public class BatController : MonoBehaviour {
             {
                 m_animator.SetTrigger(m_attackHash);
                 Instantiate(m_basicSpellTree.m_spellLinks[1].m_spell.m_prefab, m_go_spell_cast_point.transform.position, transform.rotation);
-                //m_characterStats.m_actualMana -= m_basicSpellTree.m_spellLinks[1].m_spell.m_manaConsuption;
+                m_characterStats.UseMana(m_basicSpellTree.m_spellLinks[1].m_spell.m_manaConsuption);
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 m_animator.SetTrigger(m_attackHash);
                 Instantiate(m_basicSpellTree.m_spellLinks[2].m_spell.m_prefab, m_go_spell_cast_point.transform.position, transform.rotation);
-                //m_characterStats.m_actualMana -= m_basicSpellTree.m_spellLinks[2].m_spell.m_manaConsuption;
+                m_characterStats.UseMana(m_basicSpellTree.m_spellLinks[2].m_spell.m_manaConsuption);
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
                 m_animator.SetTrigger(m_attackHash);
                 Instantiate(m_basicSpellTree.m_spellLinks[3].m_spell.m_prefab, m_go_spell_cast_point.transform.position, transform.rotation);
-                //m_characterStats.m_actualMana -= m_basicSpellTree.m_spellLinks[3].m_spell.m_manaConsuption;
+                m_characterStats.UseMana(m_basicSpellTree.m_spellLinks[3].m_spell.m_manaConsuption);
             }
         }
     }
 
     IEnumerator BeStunForXSeconds(float seconds)
     {
-        m_state = MonsterState.STUNNED;
+        m_characterStats.m_state = MonsterState.STUNNED;
         yield return new WaitForSeconds(seconds);
-        m_state = MonsterState.HEALTHY;
+        m_characterStats.m_state = MonsterState.HEALTHY;
     }
 }

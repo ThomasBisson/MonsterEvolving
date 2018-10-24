@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//STATE
+public enum MonsterState
+{
+    HEALTHY,
+    STUNNED,
+    DEAD
+}
+
 public class CharacterStats : MonoBehaviour {
 
+    [HideInInspector]
+    public MonsterState m_state;
 
     //Stats
     [Header("Stats")]
     [SerializeField]
     private int m_health;
     [SerializeField]
-    private int m_currentHealth;
-    [SerializeField]
     private int m_mana;
-    [SerializeField]
-    private int m_currentMana;
     [SerializeField]
     private int m_FireIntel;
     [SerializeField]
@@ -25,8 +31,8 @@ public class CharacterStats : MonoBehaviour {
     [SerializeField]
     private int m_WaterLuck;
 
-    private int m_actualHealth;
-    private int m_actualMana;
+    private int m_currentHealth;
+    private int m_currentMana;
     private int m_level;
     private int m_xpNeeded;
     private int m_currentXP;
@@ -34,38 +40,50 @@ public class CharacterStats : MonoBehaviour {
     //UI
     private HUDUIManager m_HUDUIManager;
 
-
-    //UI
-    //[Header("UI")]
-    //public Slider m_healthSlider;
-    //public Slider m_manaSlider;
-
     // Use this for initialization
     void Start () {
+        //SET HUD
         m_HUDUIManager = HUDUIManager.Instance;
         m_HUDUIManager.SetHealthObserver(delegate
         {
-            return m_actualHealth;
-        });
-        ////m_healthSlider = GameObject.Find("HealthSlider").GetComponent<Slider>();
-        //m_healthSlider.maxValue = m_health;
-        //m_healthSlider.value = m_health;
-        //m_actualHealth = m_health;
+            return m_currentHealth;
+        }, m_health);
+        m_currentHealth = m_health;
 
-        ////m_manaSlider = GameObject.Find("ManaSlider").GetComponent<Slider>();
-        //m_manaSlider.maxValue = m_mana;
-        //m_manaSlider.value = m_mana;
-        //m_actualMana = m_mana;
+        m_HUDUIManager.SetManaObserver(delegate
+        {
+            return m_currentMana;
+        }, m_mana);
+        m_currentMana = m_mana;
+
+        //SET STATE
+        m_state = MonsterState.HEALTHY;
     }
 
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.M))
         {
-            m_actualHealth -= 10;
-            m_HUDUIManager.RefreshHealthSlider();
+            TakeDamage(10);
         }
     }
 
-    //public void TakeDamage()
+    public void TakeDamage(int damage)
+    {
+        m_currentHealth -= damage;
+        if(damage <= 0)
+        {
+            m_currentHealth = 0;
+            m_state = MonsterState.DEAD;
+        }
+        m_HUDUIManager.RefreshHealthSlider();
+    }
+
+    public void UseMana(int manaUsed)
+    {
+        m_currentMana -= manaUsed;
+        if (m_currentMana < 0)
+            m_currentMana = 0;
+        m_HUDUIManager.RefreshManaSlider();
+    }
 }

@@ -23,21 +23,28 @@ public class HUDUIManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //ValueGetter value = 
-
 	}
 
-    public void SetHealthObserver(HUDObserverValueGetter observer)
+    public void SetHealthObserver(HUDObserverValueGetter observer, float health)
     {
+        m_healthSlider.SetMaxValueSlider(health);
         m_healthSlider.m_observer = observer;
-        //m_healthSlider.maxValue = m_health;
-        //m_healthSlider.value = m_health;
-        //m_actualHealth = m_health;
     }
 
     public void RefreshHealthSlider()
     {
         m_healthSlider.UpdateMyValue();
+    }
+
+    public void SetManaObserver(HUDObserverValueGetter observer, float mana)
+    {
+        m_manaSlider.SetMaxValueSlider(mana);
+        m_manaSlider.m_observer = observer;
+    }
+
+    public void RefreshManaSlider()
+    {
+        m_manaSlider.UpdateMyValue();
     }
 
 }

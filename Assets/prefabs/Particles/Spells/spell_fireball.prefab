@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54525417101636910}
   - component: {fileID: 135199915444028980}
   - component: {fileID: 82522248474463356}
+  - component: {fileID: 114522343385076362}
   m_Layer: 0
   m_Name: spell_fireball
   m_TagString: Player
@@ -187,6 +188,21 @@ AudioSource:
     m_PostInfinity: 2
     m_RotationOrder: 0
 --- !u!114 &114127601765944374
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1079229088779614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d656059172357194581e43bc73f34dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1000
+  mana_cost: 10
+  damage: 10
+  time_alive: 2
+--- !u!114 &114522343385076362
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
