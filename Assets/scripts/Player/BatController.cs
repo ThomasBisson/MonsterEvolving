@@ -84,10 +84,10 @@ public class BatController : MonoBehaviour {
             {
                 m_animator.SetTrigger(m_attackHash);
                 GameObject spell = Instantiate(m_basicSpellTree.m_spellLinks[0].m_spell.m_prefab, m_go_spell_cast_point.transform.position, transform.rotation);
+
                 m_characterStats.UseMana(m_basicSpellTree.m_spellLinks[0].m_spell.m_manaConsuption);
-                FireBallController fireBallController = spell.GetComponent<FireBallController>();
-                spell.GetComponent<Rigidbody>().AddForce(transform.forward * fireBallController.speed);
-                Destroy(spell, fireBallController.time_alive);
+
+                
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
