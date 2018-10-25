@@ -21,6 +21,7 @@ public class OrbitCamera : MonoBehaviour {
     void LateUpdate()
     {
         transform.position = player.position + offsetPlayer;
+        
 
         if (Input.GetKey(KeyCode.Mouse0))
         {
@@ -30,7 +31,7 @@ public class OrbitCamera : MonoBehaviour {
 
             offsetPlayer = transform.position - player.position;
         }
-        if(Input.GetKey(KeyCode.Mouse1))
+        else if(Input.GetKey(KeyCode.Mouse1))
         {
             offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * turnSpeed, Vector3.up) * offset;
             transform.position = player.position + offset;
@@ -39,6 +40,18 @@ public class OrbitCamera : MonoBehaviour {
             player.rotation = transform.rotation;
 
             offsetPlayer = transform.position - player.position;
+        }
+        else if(Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            transform.position += transform.forward * 0.5f;
+            offsetPlayer = transform.position - player.position;
+            offset = transform.position - player.position;
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            transform.position -= transform.forward * 0.5f;
+            offsetPlayer = transform.position - player.position;
+            offset = transform.position - player.position;
         }
     }
 }

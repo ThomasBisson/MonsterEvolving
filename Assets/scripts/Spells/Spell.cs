@@ -1,5 +1,12 @@
 ﻿using UnityEngine;
 
+public enum LocationSpell
+{
+    OnMonster,
+    OnSpellPoint,
+    OnCursor
+}
+
 [CreateAssetMenu(fileName = "New spell", menuName = "Spells/Spell")]
 public class Spell : ScriptableObject {
 
@@ -11,6 +18,7 @@ public class Spell : ScriptableObject {
     public int m_manaConsuption;
     public int m_cooldown;
     public int m_levelAvailable;
+    public LocationSpell m_locationSpell;
 
     public Sprite m_image;
     

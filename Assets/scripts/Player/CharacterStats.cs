@@ -40,21 +40,11 @@ public class CharacterStats : MonoBehaviour {
     //UI
     private HUDUIManager m_HUDUIManager;
 
+    #region UNITY_METHOD
     // Use this for initialization
     void Start () {
-        //SET HUD
-        m_HUDUIManager = HUDUIManager.Instance;
-        m_HUDUIManager.SetHealthObserver(delegate
-        {
-            return m_currentHealth;
-        }, m_health);
-        m_currentHealth = m_health;
-
-        m_HUDUIManager.SetManaObserver(delegate
-        {
-            return m_currentMana;
-        }, m_mana);
-        m_currentMana = m_mana;
+        //SET OBSERVERS
+        Invoke("SetObservers", 1);
 
         //SET STATE
         m_state = MonsterState.HEALTHY;
@@ -68,22 +58,47 @@ public class CharacterStats : MonoBehaviour {
         }
     }
 
+    #endregion
+
+    private void SetObservers()
+    {
+        //SET HUD SLIDERS
+        m_HUDUIManager = HUDUIManager.Instance;
+        m_currentHealth = m_health;
+        m_HUDUIManager.SetHealthObserver(delegate
+        {
+            return m_currentHealth;
+        }, m_health);
+
+        m_currentMana = m_mana;
+        m_HUDUIManager.SetManaObserver(delegate
+        {
+            return m_currentMana;
+        }, m_mana);
+    }
+
     public void TakeDamage(int damage)
     {
+        print(m_currentHealth);
         m_currentHealth -= damage;
-        if(damage <= 0)
+        if(m_currentHealth <= 0)
         {
+            print("Dead");
             m_currentHealth = 0;
             m_state = MonsterState.DEAD;
         }
         m_HUDUIManager.RefreshHealthSlider();
     }
 
-    public void UseMana(int manaUsed)
+    public bool UseMana(int manaUsed)
     {
+        if (m_currentMana < manaUsed)
+            return false;
+
         m_currentMana -= manaUsed;
         if (m_currentMana < 0)
             m_currentMana = 0;
         m_HUDUIManager.RefreshManaSlider();
+        return true;
     }
 }

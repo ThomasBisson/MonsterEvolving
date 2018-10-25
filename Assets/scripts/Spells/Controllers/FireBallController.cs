@@ -15,12 +15,14 @@ public class FireBallController : MonoBehaviour {
 	void Start () {
         //audio = GetComponent<AudioSource>();
         GetComponent<Rigidbody>().AddForce(transform.forward * m_speed);
-        Destroy(spell, fireBallController.time_alive);
+        Destroy(gameObject, m_timeAlive);
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
+        print(collision.gameObject.tag);
+        if(collision.gameObject.tag != "Player")
+            Destroy(gameObject);
 
         //if (audio != null)
         //    audio.Play(); //02 35 65 94 69  // antony g 
