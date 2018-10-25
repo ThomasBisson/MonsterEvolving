@@ -30,20 +30,17 @@ public class PlayerController : MonoBehaviour {
     public KeyCode m_jumpKeyCode;
 
     //Spells
-    [Header("Spells")]
-    public SpellTree m_basicSpellTree;
-    public Transform m_go_spell_cast_point;
-
+    private SpellManager m_spellManager;
     //SpellsInput
     [Header("Spell Inputs")]
     public KeyCode[] m_SpellKeyCode = new KeyCode[9];
-
 
     // Use this for initialization
     void Start () {
         m_animator = GetComponent<Animator>();
         m_controller = GetComponent<CharacterController>();
         m_characterStats = GetComponent<CharacterStats>();
+        m_spellManager = GetComponent<SpellManager>();
     }
 
     // Update is called once per frame
@@ -91,36 +88,22 @@ public class PlayerController : MonoBehaviour {
             //}
 
             //SPELL
-            for(int i=0; i<m_SpellKeyCode.Length; i++)
+            for (int i = 0; i < m_SpellKeyCode.Length; i++)
             {
-                if(Input.GetKeyDown(m_SpellKeyCode[i]))
+                if (Input.GetKeyDown(m_SpellKeyCode[i]))
                 {
-                    if (m_characterStats.UseMana(m_basicSpellTree.m_spellLinks[i].m_spell.m_manaConsuption)) {
+                    if(m_spellManager.InstantiateSpell(m_characterStats, i))
                         m_animator.SetTrigger(m_attackHash);
-                        Instantiate(m_basicSpellTree.m_spellLinks[i].m_spell.m_prefab,
-                            LocationSpellToVector(m_basicSpellTree.m_spellLinks[i].m_spell.m_locationSpell),
-                            transform.rotation);
-                    }
                 }
             }
-        } else if (m_characterStats.m_state == MonsterState.DEAD) {
+
+            } else if (m_characterStats.m_state == MonsterState.DEAD) {
             m_animator.SetTrigger(m_dieHash);
             //GAME OVER
         }
     }
 
-    private Vector3 LocationSpellToVector(LocationSpell locationSpell)
-    {
-        switch (locationSpell)
-        {
-            case LocationSpell.OnMonster:
-                return transform.position;
-            case LocationSpell.OnSpellPoint:
-                return m_go_spell_cast_point.position;
-            default:
-                return Vector3.zero;
-        }
-    }
+    
 
     IEnumerator BeStunForXSeconds(float seconds)
     {

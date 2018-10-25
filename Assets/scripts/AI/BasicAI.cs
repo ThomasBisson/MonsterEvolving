@@ -60,11 +60,13 @@ public class BasicAI : MonoBehaviour
             // Quand l'ennemi est proche mais pas assez pour attaquer
             if (Distance < chaseRange && Distance > attackRange)
             {
-                //animator.SetBool("Moving", true);
+                //transform.LookAt(Target.position);
+                animator.SetBool("Moving", true);
                 agent.destination = Target.position;
             } else
             {
-                //animator.SetBool("Moving", false);
+                if(transform.position == agent.destination)
+                    animator.SetBool("Moving", false);
             }
 
             //Quand l'ennemi est assez proche pour attaquer
@@ -80,7 +82,7 @@ public class BasicAI : MonoBehaviour
     void attack()
     {
         // empeche l'ennemi de traverser le joueur
-        //agent.destination = transform.position;
+        agent.destination = transform.position;
 
         //Si pas de cooldown
         if (Time.time > attackTime)
@@ -109,7 +111,6 @@ public class BasicAI : MonoBehaviour
     public void Dead()
     {
         isDead = true;
-        //animator.Play("die");
         Destroy(transform.gameObject, 5);
     }
 }

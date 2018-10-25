@@ -21,4 +21,4 @@ MonoBehaviour:
   m_cooldown: 2
   m_levelAvailable: 0
   m_locationSpell: 1
-  m_image: {fileID: 0}
+  m_image: {fileID: 21300000, guid: 5e98a02e902629544bd815de10517a99, type: 3}

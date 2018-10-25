@@ -20,4 +20,4 @@ MonoBehaviour:
   m_cooldown: 2
   m_levelAvailable: 0
   m_locationSpell: 1
-  m_image: {fileID: 0}
+  m_image: {fileID: 21300000, guid: 3d8eee6420479324d99eb6698c08b8ea, type: 3}

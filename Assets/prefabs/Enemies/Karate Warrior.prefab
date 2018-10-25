@@ -277,9 +277,10 @@ GameObject:
   - component: {fileID: 95849048352789556}
   - component: {fileID: 195767172476494898}
   - component: {fileID: 114856057175290706}
+  - component: {fileID: 64823492406020738}
   m_Layer: 0
   m_Name: Karate Warrior
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -845,8 +846,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1882133006153662}
-  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -0.0000000099258495, y: 0, z: -0.0017328988}
+  m_LocalRotation: {x: 0.5, y: -0.50000006, z: -0.5, w: -0.5}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0017318726}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4037718207836082}
@@ -1582,6 +1583,20 @@ Transform:
   m_Father: {fileID: 4421924982105392}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &64823492406020738
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1366876012274708}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300010, guid: 8645e0506d8d64d44bda3003df478c3e, type: 3}
 --- !u!95 &95849048352789556
 Animator:
   serializedVersion: 3
@@ -1591,7 +1606,7 @@ Animator:
   m_GameObject: {fileID: 1366876012274708}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 8645e0506d8d64d44bda3003df478c3e, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4329bbc6e0676ec44a6723608b828e4a, type: 2}
+  m_Controller: {fileID: 9100000, guid: facabd4d4e189294cbc30a645d5b5f85, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1611,8 +1626,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c211cb91aa4b544798f0961380900cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_target: {fileID: 0}
-  m_agent: {fileID: 0}
+  Target: {fileID: 0}
+  chaseRange: 10
+  attackRange: 2.2
+  attackRepeatTime: 1
+  TheDammage: 10
+  enemyHealth: 50
 --- !u!137 &137145907447510754
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1721,8 +1740,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 8
+  m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0

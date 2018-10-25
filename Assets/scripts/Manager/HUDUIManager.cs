@@ -16,6 +16,11 @@ public class HUDUIManager : MonoBehaviour {
     [SerializeField]
     private SliderUpdate m_expSlider;
 
+    [SerializeField]
+    private GameObject m_viewPort;
+    [SerializeField]
+    private GameObject m_emptyImagePrefab;
+
     void Awake()
     {
         Instance = this;
@@ -47,4 +52,13 @@ public class HUDUIManager : MonoBehaviour {
         m_manaSlider.UpdateMyValue();
     }
 
+    public void PopulateSpellsViewPort(Sprite[] sprites)
+    {
+        GameObject g;
+        foreach (Sprite s in sprites)
+        {
+            g = Instantiate(m_emptyImagePrefab, m_viewPort.transform);
+            g.GetComponent<Image>().sprite = s;
+        }
+    }
 }
