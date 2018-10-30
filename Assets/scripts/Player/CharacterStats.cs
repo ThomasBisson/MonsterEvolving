@@ -23,6 +23,8 @@ public class CharacterStats : MonoBehaviour {
     [SerializeField]
     private int m_mana;
     [SerializeField]
+    private int m_regenManaSecondPercent;
+    [SerializeField]
     private int m_FireIntel;
     [SerializeField]
     private int m_EarthStrenght;
@@ -37,6 +39,8 @@ public class CharacterStats : MonoBehaviour {
     private int m_xpNeeded;
     private int m_currentXP;
 
+    private float m_time;
+
     //UI
     private HUDUIManager m_HUDUIManager;
 
@@ -48,6 +52,8 @@ public class CharacterStats : MonoBehaviour {
 
         //SET STATE
         m_state = MonsterState.HEALTHY;
+
+        m_time = Time.time;
     }
 
     void Update()
@@ -55,6 +61,12 @@ public class CharacterStats : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.M))
         {
             TakeDamage(10);
+        }
+
+        if(m_time + 1 < Time.time)
+        {
+            m_time = Time.time;
+            RecupMana((m_regenManaSecondPercent * m_mana) / 100);
         }
     }
 
@@ -100,5 +112,15 @@ public class CharacterStats : MonoBehaviour {
             m_currentMana = 0;
         m_HUDUIManager.RefreshManaSlider();
         return true;
+    }
+
+    public void RecupMana(int manaRecup)
+    {
+        
+        if (manaRecup + m_currentMana > m_mana)
+            m_currentMana = m_mana;
+        else
+            m_currentMana += manaRecup;
+        m_HUDUIManager.RefreshManaSlider();
     }
 }
