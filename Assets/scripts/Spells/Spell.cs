@@ -19,6 +19,7 @@ public class Spell : ScriptableObject {
     public int m_cooldown;
     public int m_levelAvailable;
     public LocationSpell m_locationSpell;
+    public EnnemyState[] m_ennemyStatOnReceive;
 
     public Sprite m_image;
     

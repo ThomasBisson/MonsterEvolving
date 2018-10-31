@@ -2,24 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnnemyState
+{
+    HEALTHY,
+    STUNNED,
+    DEAD
+}
+
 public class EnnemyStats : MonoBehaviour {
 
-    [SerializeField]
     public int m_health;
-    [SerializeField]
     public int m_level;
-    [SerializeField]
     public int m_levelInterval;
 
-    private int m_currentHealth;
+    public int m_currentHealth;
+
+    [HideInInspector]
+    public EnnemyState m_ennemyState = EnnemyState.HEALTHY;
 
     // Use this for initialization
     void Start () {
-		
+
+        m_currentHealth = m_health;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public void TakeDamage(int damage)
+    {
+        if(m_currentHealth - damage < 0)
+        {
+            m_currentHealth = 0;
+            m_ennemyState = EnnemyState.DEAD;
+        }
+    }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicAI : MonoBehaviour
+public class BasicAI : AI
 {
 
     //Distance entre le joueur et l'ennemi
@@ -30,23 +30,21 @@ public class BasicAI : MonoBehaviour
     // Animations de l'ennemi
     private Animator animator;
 
-    // Vie de l'ennemi
-    public float enemyHealth;
-    private bool isDead = false;
 
-    void Start()
+    // Use this for initialization
+    public override void Start()
     {
+        base.Start();
         agent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         animator = gameObject.GetComponent<Animator>();
         attackTime = Time.time;
     }
 
 
-
     void Update()
     {
 
-        if (!isDead)
+        if (m_ennemyStats.m_ennemyState == EnnemyState.DEAD)
         {
 
             // On calcule la distance entre le joueur et l'ennemi, en fonction de cette distance on effectue diverses actions
@@ -94,23 +92,25 @@ public class BasicAI : MonoBehaviour
         }
     }
 
-    public void ApplyDammage(float TheDammage)
+    public override bool ApplyDammage(int TheDammage)
     {
-        if (!isDead)
+        if (m_ennemyStats.m_ennemyState == EnnemyState.DEAD)
         {
-            enemyHealth = enemyHealth - TheDammage;
+            m_ennemyStats.m_currentHealth -= TheDammage;
             print(gameObject.name + "a subit " + TheDammage + " points de dégâts.");
 
-            if (enemyHealth <= 0)
+            if (m_ennemyStats.m_currentHealth <= 0)
             {
                 Dead();
+                return true;
             }
         }
+        return false;
     }
 
     public void Dead()
     {
-        isDead = true;
+        m_ennemyStats.m_ennemyState = EnnemyState.DEAD;
         Destroy(transform.gameObject, 5);
     }
 }

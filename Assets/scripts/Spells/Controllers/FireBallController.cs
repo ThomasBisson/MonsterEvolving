@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class FireBallController : MonoBehaviour {
 
-    public int m_speed = 1000;
-    public int m_manaCost = 10;
-    public int m_damage = 10;
-    public int m_timeAlive = 2;
+    public Spell m_spell;
 
-    private AudioSource audio;
+    public int m_speed = 1000;
+
+    ParticleSystem m_particleSystem;
 
 	// Use this for initialization
 	void Start () {
-        //audio = GetComponent<AudioSource>();
+        m_particleSystem = GetComponent<ParticleSystem>();
         GetComponent<Rigidbody>().AddForce(transform.forward * m_speed);
-        Destroy(gameObject, m_timeAlive);
+        Destroy(gameObject, m_particleSystem.main.duration);
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnParticleCollision(Collision collision)
     {
         print(collision.gameObject.tag);
         if(collision.gameObject.tag != "Player")
             Destroy(gameObject);
+        else if(collision.gameObject.tag == "Ennemy")
+        {
+            collision.gameObject.GetComponent<AI>().ApplyDammage(m_spell.m_damage);
+        }
 
         //if (audio != null)
         //    audio.Play(); //02 35 65 94 69  // antony g 

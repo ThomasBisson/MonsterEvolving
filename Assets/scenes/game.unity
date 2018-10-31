@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.35288757, g: 0.5736619, b: 0.8686645, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -304,6 +304,48 @@ Transform:
   m_Father: {fileID: 1636378938}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &185514704 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1366876012274708, guid: 436abeb975e3b76438a3ad9a7ef37347,
+    type: 2}
+  m_PrefabInternal: {fileID: 1099854484}
+--- !u!114 &185514709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 185514704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 451839f030672f44f83b7c19ad995932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_health: 100
+  m_level: 6
+  m_levelInterval: 1
+  m_currentHealth: 0
+  m_ennemyState: 0
+--- !u!1 &256451038 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1645950615992938, guid: 90352e98e990da443ab85eb182458a46,
+    type: 2}
+  m_PrefabInternal: {fileID: 1577041300}
+--- !u!114 &256451044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 256451038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 451839f030672f44f83b7c19ad995932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_health: 100
+  m_level: 5
+  m_levelInterval: 1
+  m_currentHealth: 0
+  m_ennemyState: 0
 --- !u!1 &271085575
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,7 +834,7 @@ Transform:
   - {fileID: 1119346386}
   - {fileID: 1636378938}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &930893123
 GameObject:
@@ -1032,6 +1074,11 @@ Prefab:
         type: 2}
       propertyPath: chaseRange
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 64823492406020738, guid: 436abeb975e3b76438a3ad9a7ef37347,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 436abeb975e3b76438a3ad9a7ef37347, type: 2}
@@ -1677,7 +1724,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4330470122938892, guid: 0b18dc7cd89af6f449d5dd0bdec7787e, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114308484871227178, guid: 0b18dc7cd89af6f449d5dd0bdec7787e,
         type: 2}

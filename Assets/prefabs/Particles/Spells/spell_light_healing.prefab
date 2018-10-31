@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114541532991809364}
   m_Layer: 0
   m_Name: spell_light_healing
-  m_TagString: Untagged
+  m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
