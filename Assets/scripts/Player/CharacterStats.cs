@@ -63,10 +63,13 @@ public class CharacterStats : MonoBehaviour {
             TakeDamage(10);
         }
 
-        if(m_time + 1 < Time.time)
+        if (m_HUDUIManager != null)
         {
-            m_time = Time.time;
-            RecupMana((m_regenManaSecondPercent * m_mana) / 100);
+            if (m_time + 1 < Time.time)
+            {
+                m_time = Time.time;
+                RecupMana((m_regenManaSecondPercent * m_mana) / 100);
+            }
         }
     }
 

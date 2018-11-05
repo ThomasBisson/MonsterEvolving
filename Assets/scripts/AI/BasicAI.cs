@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class BasicAI : AI
 {
@@ -44,7 +45,7 @@ public class BasicAI : AI
     void Update()
     {
 
-        if (m_ennemyStats.m_ennemyState == EnnemyState.DEAD)
+        if (m_ennemyStats.m_ennemyState != EnnemyState.DEAD)
         {
 
             // On calcule la distance entre le joueur et l'ennemi, en fonction de cette distance on effectue diverses actions
@@ -73,6 +74,10 @@ public class BasicAI : AI
                 attack();
             }
 
+        } else
+        {
+            agent.isStopped = true;
+            animator.SetBool("Moving", false);
         }
     }
 
@@ -92,21 +97,21 @@ public class BasicAI : AI
         }
     }
 
-    public override bool ApplyDammage(int TheDammage)
-    {
-        if (m_ennemyStats.m_ennemyState == EnnemyState.DEAD)
-        {
-            m_ennemyStats.m_currentHealth -= TheDammage;
-            print(gameObject.name + "a subit " + TheDammage + " points de dégâts.");
+    //public override bool ApplyDammage(int TheDammage)
+    //{
+    //    if (m_ennemyStats.m_ennemyState == EnnemyState.DEAD)
+    //    {
+    //        m_ennemyStats.m_currentHealth -= TheDammage;
+    //        print(gameObject.name + "a subit " + TheDammage + " points de dégâts.");
 
-            if (m_ennemyStats.m_currentHealth <= 0)
-            {
-                Dead();
-                return true;
-            }
-        }
-        return false;
-    }
+    //        if (m_ennemyStats.m_currentHealth <= 0)
+    //        {
+    //            Dead();
+    //            return true;
+    //        }
+    //    }
+    //    return false;
+    //}
 
     public void Dead()
     {

@@ -18,9 +18,18 @@ public class SpellManager : MonoBehaviour {
     {
         if (characterStats.UseMana(m_basicSpellTree.m_spellLinks[idSpell].m_spell.m_manaConsuption))
         {
-            Instantiate(m_basicSpellTree.m_spellLinks[idSpell].m_spell.m_prefab,
+            if(LocationSpell.OnMonster == m_basicSpellTree.m_spellLinks[idSpell].m_spell.m_locationSpell)
+            {
+                Instantiate(m_basicSpellTree.m_spellLinks[idSpell].m_spell.m_prefab,
+                transform.position,
+                transform.rotation,
+                transform);
+            } else
+            {
+                Instantiate(m_basicSpellTree.m_spellLinks[idSpell].m_spell.m_prefab,
                 LocationSpellToVector(m_basicSpellTree.m_spellLinks[idSpell].m_spell.m_locationSpell),
                 transform.rotation);
+            }
             return true;
         }
         return false;
@@ -30,8 +39,6 @@ public class SpellManager : MonoBehaviour {
     {
         switch (locationSpell)
         {
-            case LocationSpell.OnMonster:
-                return transform.position;
             case LocationSpell.OnSpellPoint:
                 return m_go_spell_cast_point.position;
             default:

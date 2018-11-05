@@ -17,19 +17,14 @@ public class FireBallController : MonoBehaviour {
         Destroy(gameObject, m_particleSystem.main.duration);
     }
 
-    void OnParticleCollision(Collision collision)
-    {
-        print(collision.gameObject.tag);
-        if(collision.gameObject.tag != "Player")
-            Destroy(gameObject);
-        else if(collision.gameObject.tag == "Ennemy")
-        {
-            collision.gameObject.GetComponent<AI>().ApplyDammage(m_spell.m_damage);
-        }
-
-        //if (audio != null)
-        //    audio.Play(); //02 35 65 94 69  // antony g 
-        //else
-        //    Debug.Log("ca marche pas trop");
-    }
+    //void OnParticleCollision(Collision collision)
+    //{
+    //    print(collision.gameObject.tag);
+    //    if(collision.gameObject.tag != "Player")
+    //        Destroy(gameObject);
+    //    else if(collision.gameObject.tag == "Ennemy")
+    //    {
+    //        //collision.gameObject.GetComponent<AI>().ApplyDammage(m_spell.m_damage);
+    //    }
+    //}
 }

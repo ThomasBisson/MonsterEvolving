@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4230385069567604}
-  - component: {fileID: 114127601765944374}
   - component: {fileID: 198151435341324682}
   - component: {fileID: 199556390662791652}
   - component: {fileID: 54525417101636910}
@@ -90,19 +89,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &114127601765944374
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1079229088779614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d656059172357194581e43bc73f34dac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_spell: {fileID: 0}
-  m_speed: 1000
 --- !u!114 &114522343385076362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d656059172357194581e43bc73f34dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_spell: {fileID: 0}
-  m_speed: 1000
+  m_spell: {fileID: 11400000, guid: 810b9cae8e05bae47a9a3db142bc1a29, type: 2}
+  m_speed: 2000
 --- !u!198 &198151435341324682
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -123,7 +109,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1079229088779614}
   serializedVersion: 5
-  lengthInSec: 2
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   looping: 1
