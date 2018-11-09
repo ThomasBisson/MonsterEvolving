@@ -39,6 +39,14 @@ public class Resizer : MonoBehaviour {
         return tweener;
     }
 
+    public void ShrinkForUnityEvents()
+    {
+        if (tweener != null)
+            tweener.Kill();
+
+        tweener = transform.DOScale(m_MinSize, m_Duration).SetEase(m_EaseShrink);
+    }
+
     public void InstantShrink()
     {
         if (tweener != null)
