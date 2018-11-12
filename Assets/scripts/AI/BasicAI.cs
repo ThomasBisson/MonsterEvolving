@@ -9,9 +9,6 @@ public class BasicAI : AI
     //Distance entre le joueur et l'ennemi
     private float Distance;
 
-    // Cible de l'ennemi
-    public Transform Target;
-
     //Distance de poursuite
     public float chaseRange = 10;
 
@@ -49,7 +46,7 @@ public class BasicAI : AI
         {
 
             // On calcule la distance entre le joueur et l'ennemi, en fonction de cette distance on effectue diverses actions
-            Distance = Vector3.Distance(Target.position, transform.position);
+            Distance = Vector3.Distance(m_target.position, transform.position);
 
             // Quand l'ennemi est loin = idle
             if (Distance > chaseRange)
@@ -61,7 +58,7 @@ public class BasicAI : AI
             {
                 //transform.LookAt(Target.position);
                 animator.SetBool("Moving", true);
-                agent.destination = Target.position;
+                agent.destination = m_target.position;
             } else
             {
                 if(transform.position == agent.destination)

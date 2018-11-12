@@ -48,6 +48,7 @@ public class EnnemyStats : MonoBehaviour {
         m_imageSlider.fillAmount = ConvertCurrentHealthToPercent();
         
     }
+
     private float ConvertCurrentHealthToPercent()
     {
         return (((float)m_currentHealth * 100f) /(float)m_health) / 100f;
