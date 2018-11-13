@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,16 @@ public class StreamVideo : MonoBehaviour {
         //StartCoroutine(PlayVideo());
 	}
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+            Play();
+        if (Input.GetKeyDown(KeyCode.L))
+            Pause();
+        if (Input.GetKeyDown(KeyCode.M))
+            BackPercentVideo(5);
+    }
+
     public void Play()
     {
         StartCoroutine(PlayVideo());
@@ -29,22 +40,14 @@ public class StreamVideo : MonoBehaviour {
         m_audioSource.Pause();
     }
 
-    public void BackFivePercentVideo()
+    public void BackPercentVideo(ulong percent)
     {
         ulong totalFrame = m_videoPlayer.frameCount;
+        ulong actualFrame = Convert.ToUInt64(m_videoPlayer.frame);
 
-        if (m_videoPlayer.frame < ConvertPercentToFrame(totalFrame, 6))
+        if (actualFrame < MathUtils.PercentValueFromAnotherValue(percent, totalFrame))
             return;
-
-        //m_videoPlayer.frame = ConvertPercentToFrame(GetActualPercentVideo() - 5, totalFrame) {
-
-        //}
-
-    }
-
-    void hh()
-    {
-        m_videoPlayer.frameCount
+        m_videoPlayer.frame = Convert.ToInt64(MathUtils.PercentValueFromAnotherValue(MathUtils.PercentValueFromAnotherValue(actualFrame, totalFrame) - percent, totalFrame));
     }
 	
 	IEnumerator PlayVideo()
@@ -59,15 +62,5 @@ public class StreamVideo : MonoBehaviour {
         m_rawImage.texture = m_videoPlayer.texture;
         m_videoPlayer.Play();
         m_audioSource.Play();
-    }
-
-    private float ConvertPercentToFrame(int percent, int total)
-    {
-        return ((percent * 100f) / total) / 100f;
-    }
-
-    private int GetActualPercentVideo()
-    {
-        return ((m_videoPlayer.frame * 100) / m_videoPlayer.frameCount) / 100;
     }
 }

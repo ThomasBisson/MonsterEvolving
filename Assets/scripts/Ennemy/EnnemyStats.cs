@@ -51,6 +51,6 @@ public class EnnemyStats : MonoBehaviour {
 
     private float ConvertCurrentHealthToPercent()
     {
-        return (((float)m_currentHealth * 100f) /(float)m_health) / 100f;
+        return MathUtils.PercentValue(m_currentHealth, m_health);// (((float)m_currentHealth * 100f) /(float)m_health) / 100f;
     }
 }
