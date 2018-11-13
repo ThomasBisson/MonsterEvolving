@@ -10,21 +10,28 @@ public class FireBallController : MonoBehaviour {
 
     ParticleSystem m_particleSystem;
 
+    Rigidbody m_rigidbody;
+
 	// Use this for initialization
 	void Start () {
         m_particleSystem = GetComponent<ParticleSystem>();
-        GetComponent<Rigidbody>().AddForce(transform.forward * m_speed);
-        Destroy(gameObject, m_particleSystem.main.duration);
+        m_rigidbody = GetComponent<Rigidbody>();
+        m_rigidbody.AddForce(transform.forward * m_speed);
     }
 
-    //void OnParticleCollision(Collision collision)
-    //{
-    //    print(collision.gameObject.tag);
-    //    if(collision.gameObject.tag != "Player")
-    //        Destroy(gameObject);
-    //    else if(collision.gameObject.tag == "Ennemy")
-    //    {
-    //        //collision.gameObject.GetComponent<AI>().ApplyDammage(m_spell.m_damage);
-    //    }
-    //}
+    void OnTriggerEnter(Collider collision)
+    {
+        print(collision.gameObject.tag);
+        if (collision.gameObject.tag != "Player")
+        {
+            m_rigidbody.velocity = Vector3.zero;
+            m_rigidbody.angularVelocity = Vector3.zero;
+            Destroy(gameObject, .1f);
+        }
+
+        if (collision.gameObject.tag == "Ennemy")
+        {
+            collision.gameObject.GetComponent<EnnemyStats>().TakeDamage(m_spell.m_damage);
+        }
+    }
 }

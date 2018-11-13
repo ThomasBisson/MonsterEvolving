@@ -10,7 +10,7 @@ public enum EnnemyState
     DEAD
 }
 
-public class EnnemyStats : MonoBehaviour {
+public class EnnemyStats : Stats {
 
     [SerializeField]
     private int m_health;
@@ -18,6 +18,12 @@ public class EnnemyStats : MonoBehaviour {
     private int m_level;
     [SerializeField]
     private int m_levelInterval;
+    [SerializeField]
+    private int m_basicAttackDamage = 10;
+    [SerializeField]
+    private int m_basicAttackCooldown = 1;
+    [SerializeField]
+    private float m_basicAttackRange = 2.2f;
 
     private int m_currentHealth;
 
@@ -46,11 +52,17 @@ public class EnnemyStats : MonoBehaviour {
         }
         print(ConvertCurrentHealthToPercent() + " " + m_currentHealth);
         m_imageSlider.fillAmount = ConvertCurrentHealthToPercent();
-        
+    }
+
+    public void ApplyDamage(CharacterStats character, int damage = 0)
+    {
+        if (damage == 0)
+            damage = m_basicAttackDamage;
+        character.TakeDamage(damage);
     }
 
     private float ConvertCurrentHealthToPercent()
     {
-        return MathUtils.PercentValue(m_currentHealth, m_health);// (((float)m_currentHealth * 100f) /(float)m_health) / 100f;
+        return (MathUtils.PercentValueFromAnotherValue(m_currentHealth, m_health) / 100);// (((float)m_currentHealth * 100f) /(float)m_health) / 100f;
     }
 }

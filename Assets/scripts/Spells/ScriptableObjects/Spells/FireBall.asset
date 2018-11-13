@@ -14,10 +14,11 @@ MonoBehaviour:
   m_prefab: {fileID: 1079229088779614, guid: f44a4b785e225274a9e8910b068a9724, type: 2}
   m_name: FireBall
   m_description: A FireBall that goes in a staight line.
-  m_damage: 50
+  m_damage: 20
   m_heal: 0
   m_manaConsuption: 10
   m_cooldown: 2
   m_levelAvailable: 0
   m_locationSpell: 1
+  m_ennemyStatOnReceive: 
   m_image: {fileID: 21300000, guid: 3d8eee6420479324d99eb6698c08b8ea, type: 3}

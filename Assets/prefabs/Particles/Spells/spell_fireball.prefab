@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 199556390662791652}
   - component: {fileID: 54525417101636910}
   - component: {fileID: 114522343385076362}
+  - component: {fileID: 135406771081573178}
+  - component: {fileID: 114763913717791674}
   m_Layer: 0
   m_Name: spell_fireball
   m_TagString: Spell
@@ -54,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1079229088779614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.361065, y: 3.17, z: 35.734623}
+  m_LocalPosition: {x: 25.963253, y: 1.94, z: 27.420776}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4401385414544096}
@@ -102,6 +104,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_spell: {fileID: 11400000, guid: 810b9cae8e05bae47a9a3db142bc1a29, type: 2}
   m_speed: 2000
+--- !u!114 &114763913717791674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1079229088779614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e69ec64b8e655842a1fae592e8f8ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_timeAlive: 1
+--- !u!135 &135406771081573178
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1079229088779614}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.4717591
+  m_Center: {x: 0.040074944, y: 0.02210164, z: -0.0631721}
 --- !u!198 &198151435341324682
 ParticleSystem:
   m_ObjectHideFlags: 1
