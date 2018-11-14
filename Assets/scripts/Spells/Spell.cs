@@ -12,6 +12,7 @@ public class Spell : ScriptableObject {
 
     public GameObject m_prefab;
     public string m_name;
+    [TextArea]
     public string m_description;
     public int m_damage;
     public int m_heal;
@@ -19,7 +20,7 @@ public class Spell : ScriptableObject {
     public int m_cooldown;
     public int m_levelAvailable;
     public LocationSpell m_locationSpell;
-    public EnnemyState[] m_ennemyStatOnReceive;
+    public MonsterState[] m_ennemyStatOnReceive;
 
     public Sprite m_image;
     

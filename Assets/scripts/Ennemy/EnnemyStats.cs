@@ -3,66 +3,64 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum EnnemyState
-{
-    HEALTHY,
-    STUNNED,
-    DEAD
-}
+//public enum EnnemyState
+//{
+//    HEALTHY,
+//    STUNNED,
+//    DEAD
+//}
 
 public class EnnemyStats : Stats {
 
-    [SerializeField]
-    private int m_health;
-    [SerializeField]
-    private int m_level;
+    [Header("Monster specifications")]
+    [Range(-10f, 10f)]
     [SerializeField]
     private int m_levelInterval;
-    [SerializeField]
-    private int m_basicAttackDamage = 10;
-    [SerializeField]
-    private int m_basicAttackCooldown = 1;
-    [SerializeField]
-    private float m_basicAttackRange = 2.2f;
 
-    private int m_currentHealth;
+
+    [Header("HUD")]
+    [SerializeField]
+    private Image m_imageSliderHealth;
 
     [SerializeField]
-    private Image m_imageSlider;
+    private Image m_imageSliderMana;
 
-    [HideInInspector]
-    public EnnemyState m_ennemyState = EnnemyState.HEALTHY;
+    #region UNITY_METHODES
 
     // Use this for initialization
-    void Start () {
-        m_currentHealth = m_health;
-        //m_imageSlider = transform.GetChild(0).GetChild(0).GetComponent<Image>();
-        m_imageSlider.fillAmount = 1;
+    public override void Start () {
+        base.Start();
+
+        m_imageSliderHealth.fillAmount = 1;
 	}
-	
-	public void TakeDamage(int damage)
+
+    #endregion
+
+    #region HERITED_METHODES
+
+    public override void TakeDamage(int damage)
     {
-        if(m_currentHealth - damage < 0)
-        {
-            m_currentHealth = 0;
-            m_ennemyState = EnnemyState.DEAD;
-        } else
-        {
-            m_currentHealth -= damage;
-        }
-        print(ConvertCurrentHealthToPercent() + " " + m_currentHealth);
-        m_imageSlider.fillAmount = ConvertCurrentHealthToPercent();
+        base.TakeDamage(damage);
+
+        m_imageSliderHealth.fillAmount = ConvertCurrentHealthToPercent();
     }
 
-    public void ApplyDamage(CharacterStats character, int damage = 0)
+    public override bool UseMana(int manaUsed)
     {
-        if (damage == 0)
-            damage = m_basicAttackDamage;
-        character.TakeDamage(damage);
+        bool hadEnoughtMana = base.UseMana(manaUsed);
+        m_imageSliderMana.fillAmount = ConvertCurrentManaToPercent();
+        return hadEnoughtMana;
     }
+
+    #endregion
 
     private float ConvertCurrentHealthToPercent()
     {
-        return (MathUtils.PercentValueFromAnotherValue(m_currentHealth, m_health) / 100);// (((float)m_currentHealth * 100f) /(float)m_health) / 100f;
+        return (MathUtils.PercentValueFromAnotherValue((float)m_currentHealth, (float)m_health) / 100f);
+    }
+
+    private float ConvertCurrentManaToPercent()
+    {
+        return (MathUtils.PercentValueFromAnotherValue((float)m_currentMana, (float)m_mana) / 100f);
     }
 }

@@ -21,7 +21,6 @@ public class FireBallController : MonoBehaviour {
 
     void OnTriggerEnter(Collider collision)
     {
-        print(collision.gameObject.tag);
         if (collision.gameObject.tag != "Player")
         {
             m_rigidbody.velocity = Vector3.zero;

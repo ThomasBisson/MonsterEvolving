@@ -23,81 +23,62 @@ public class BasicAI : AI
     public override void Start()
     {
         base.Start();
+
         agent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         animator = gameObject.GetComponent<Animator>();
         attackTime = Time.time;
     }
 
+    void Update()
+    {
+        if (m_ennemyStats.m_state != MonsterState.DEAD)
+        {
+            // On calcule la distance entre le joueur et l'ennemi, en fonction de cette distance on effectue diverses actions
+            Distance = Vector3.Distance(m_target.position, transform.position);
 
-    //void Update()
-    //{
+            // Quand l'ennemi est loin = idle
+            if (Distance > chaseRange)
+            {
+            }
 
-    //    if (m_ennemyStats.m_ennemyState != EnnemyState.DEAD)
-    //    {
+            // Quand l'ennemi est proche mais pas assez pour attaquer
+            if (Distance < chaseRange && Distance > m_ennemyStats.m_basicAttackRange)
+            {
+                //transform.LookAt(Target.position);
+                animator.SetBool("Moving", true);
+                agent.destination = m_target.position;
+            }
+            else
+            {
+                if (transform.position == agent.destination)
+                    animator.SetBool("Moving", false);
+            }
 
-    //        // On calcule la distance entre le joueur et l'ennemi, en fonction de cette distance on effectue diverses actions
-    //        Distance = Vector3.Distance(m_target.position, transform.position);
+            //Quand l'ennemi est assez proche pour attaquer
+            if (Distance < m_ennemyStats.m_basicAttackRange)
+            {
+                attack();
+            }
+        }
+        else
+        {
+            agent.isStopped = true;
+            animator.SetBool("Moving", false);
+        }
+    }
 
-    //        // Quand l'ennemi est loin = idle
-    //        if (Distance > chaseRange)
-    //        {
-    //        }
+    // Combat
+    void attack()
+    {
+        // empeche l'ennemi de traverser le joueur
+        agent.destination = transform.position;
 
-    //        // Quand l'ennemi est proche mais pas assez pour attaquer
-    //        if (Distance < chaseRange && Distance > attackRange)
-    //        {
-    //            //transform.LookAt(Target.position);
-    //            animator.SetBool("Moving", true);
-    //            agent.destination = m_target.position;
-    //        } else
-    //        {
-    //            if(transform.position == agent.destination)
-    //                animator.SetBool("Moving", false);
-    //        }
-
-    //        //Quand l'ennemi est assez proche pour attaquer
-    //        if (Distance < attackRange)
-    //        {
-    //            attack();
-    //        }
-
-    //    } else
-    //    {
-    //        agent.isStopped = true;
-    //        animator.SetBool("Moving", false);
-    //    }
-    //}
-
-    //// Combat
-    //void attack()
-    //{
-    //    // empeche l'ennemi de traverser le joueur
-    //    agent.destination = transform.position;
-
-    //    //Si pas de cooldown
-    //    if (Time.time > attackTime)
-    //    {
-    //        animator.SetTrigger("Attack1Trigger");
-    //        //Target.GetComponent<PlayerInventory>().ApplyDamage(TheDammage);
-    //        m_target.gameObject.GetComponent
-    //        Debug.Log("L'ennemi a envoyé " + TheDammage + " points de dégâts");
-    //        attackTime = Time.time + attackRepeatTime;
-    //    }
-    //}
-
-    //public override bool ApplyDammage(int TheDammage)
-    //{
-    //    if (m_ennemyStats.m_ennemyState == EnnemyState.DEAD)
-    //    {
-    //        m_ennemyStats.m_currentHealth -= TheDammage;
-    //        print(gameObject.name + "a subit " + TheDammage + " points de dégâts.");
-
-    //        if (m_ennemyStats.m_currentHealth <= 0)
-    //        {
-    //            Dead();
-    //            return true;
-    //        }
-    //    }
-    //    return false;
-    //}
+        //Si pas de cooldown
+        if (Time.time > attackTime)
+        {
+            animator.SetTrigger("Attack1Trigger");
+            m_target.gameObject.GetComponent<Stats>().TakeDamage(m_ennemyStats.m_basicAttackDamage);
+            attackTime = Time.time + m_ennemyStats.m_basicAttackCooldown;
+        }
+    }
 }
