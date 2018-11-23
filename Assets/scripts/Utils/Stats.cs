@@ -20,6 +20,7 @@ public class Stats : MonoBehaviour {
     [Header("Peticular Stats")]
     [SerializeField]
     protected int m_level;
+    public int m_baseXPGiving = 0;
 
     /****** Basic attack ******/
     [Header("Basic attack")]
@@ -39,6 +40,16 @@ public class Stats : MonoBehaviour {
         m_currentHealth = m_health;
         m_currentMana = m_mana;
         m_timeRegenMana = Time.time;
+    }
+
+    public bool isDead() { return m_state == MonsterState.DEAD; }
+
+    public virtual void RegenHealth(int health)
+    {
+        if (m_currentHealth + health > m_health)
+            m_currentHealth = m_health;
+        else
+            m_currentHealth += health;
     }
 
     public virtual void RegenManaLoop()

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class SoundWaveController : MonoBehaviour {
-    [SerializeField]
-    private Spell m_spell;
-
+public class SoundWaveController : BasicSpellControler {
+    
+    [Header("Specific information")]
     [SerializeField]
     private Transform m_pivot;
     
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
+        base.Start();
         m_pivot.DOScaleZ(36f, 1.6f);
 	}
 
@@ -19,7 +19,10 @@ public class SoundWaveController : MonoBehaviour {
     {
         if(collider.transform.tag == "Ennemy")
         {
-            collider.gameObject.GetComponent<EnnemyStats>().TakeDamage(m_spell.m_damage);
+            EnnemyStats ennemy = collider.gameObject.GetComponent<EnnemyStats>();
+            ennemy.TakeDamage(m_spell.m_damage);
+            if (ennemy.isDead())
+                KillMonster(ennemy.GetComponent<EnnemyStats>().m_baseXPGiving);
         }
     }
 

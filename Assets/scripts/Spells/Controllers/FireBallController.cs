@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBallController : MonoBehaviour {
+public class FireBallController : BasicSpellControler {
 
-    public Spell m_spell;
-
+    [Header("Specific information")]
     public int m_speed = 1000;
 
     ParticleSystem m_particleSystem;
@@ -13,7 +12,8 @@ public class FireBallController : MonoBehaviour {
     Rigidbody m_rigidbody;
 
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
+        base.Start();
         m_particleSystem = GetComponent<ParticleSystem>();
         m_rigidbody = GetComponent<Rigidbody>();
         m_rigidbody.AddForce(transform.forward * m_speed);
@@ -30,7 +30,10 @@ public class FireBallController : MonoBehaviour {
 
         if (collision.gameObject.tag == "Ennemy")
         {
-            collision.gameObject.GetComponent<EnnemyStats>().TakeDamage(m_spell.m_damage);
+            EnnemyStats ennemy = collision.gameObject.GetComponent<EnnemyStats>();
+            ennemy.TakeDamage(m_spell.m_damage);
+            if (ennemy.isDead())
+                KillMonster(ennemy.GetComponent<EnnemyStats>().m_baseXPGiving);
         }
     }
 }

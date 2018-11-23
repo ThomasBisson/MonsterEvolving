@@ -88,6 +88,21 @@ public class CharacterStats : Stats {
     #endregion
 
 
+    public void GainExperience(int xp)
+    {
+        if(m_currentXP + xp >= m_xpNeeded)
+        {
+            int xpNextLevel = xp - (m_xpNeeded - m_currentXP);
+            m_level++;
+            m_xpNeeded = ExperienceHelper.GiveMeTheNextExperienceNeededToReachTheNextLevel(m_level);
+            m_currentXP = xpNextLevel;
+        }
+        else
+        {
+            m_currentXP += xp;
+        }
+    }
+    
     private void SetObservers()
     {
         //SET HUD SLIDERS

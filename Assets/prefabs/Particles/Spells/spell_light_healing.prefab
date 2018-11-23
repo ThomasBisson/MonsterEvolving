@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4146792103140942}
   - component: {fileID: 198696043465467790}
   - component: {fileID: 199218920486902620}
-  - component: {fileID: 114541532991809364}
+  - component: {fileID: 114827806353061448}
   m_Layer: 0
   m_Name: spell_light_healing
   m_TagString: Spell
@@ -53,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1680265610186080}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 90.27638, y: 3.77, z: 76.95017}
+  m_LocalPosition: {x: 26.833817, y: 0.64, z: 19.371008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4624449376570590}
@@ -73,7 +73,7 @@ Transform:
   m_Father: {fileID: 4146792103140942}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114541532991809364
+--- !u!114 &114827806353061448
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,10 +81,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1680265610186080}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e69ec64b8e655842a1fae592e8f8ed4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a340969a8735a6409edd109eb74d09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_timeAlive: 3
+  m_objectToDestroy: {fileID: 0}
+  m_timeAlive: 2
+  m_spell: {fileID: 11400000, guid: 16f53f42d4a11df4f98aa45b15e3e8f1, type: 2}
 --- !u!198 &198476134431671510
 ParticleSystem:
   m_ObjectHideFlags: 1

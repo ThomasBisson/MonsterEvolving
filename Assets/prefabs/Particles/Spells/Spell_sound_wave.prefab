@@ -71,7 +71,6 @@ GameObject:
   - component: {fileID: 4221842822489660}
   - component: {fileID: 198864806513211134}
   - component: {fileID: 199090182970870546}
-  - component: {fileID: 114124913007006042}
   m_Layer: 0
   m_Name: Spell_sound_wave
   m_TagString: Spell
@@ -100,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1813103634718356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.949133, y: 0, z: 33.835327}
+  m_LocalPosition: {x: 27.754412, y: 0, z: 22.03219}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4055802093984522}
@@ -203,18 +202,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114124913007006042
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1813103634718356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e69ec64b8e655842a1fae592e8f8ed4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_timeAlive: 1.7
 --- !u!114 &114789630371350064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -226,6 +213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279d2ae410117694cafaa9a7243950ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_objectToDestroy: {fileID: 1813103634718356}
+  m_timeAlive: 1.7
   m_spell: {fileID: 11400000, guid: f12dd2684c157144f895466ae8017b2c, type: 2}
   m_pivot: {fileID: 4055802093984522}
 --- !u!198 &198864806513211134
